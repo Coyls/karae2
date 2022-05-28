@@ -197,23 +197,22 @@ class AwakeState(PlantState):
         pass
 
     def process(self):
-        self.AwakeStateSpeak()
+        self.awakeStateSpeak()
         self.setState(AwakeHelloState(self))
-
-        #print("Go To StandbyAfterAwake")
-        # self.plant.setState(StandbyAfterAwake(self.plant, 10))     
-
 
     # ----------------------------------------
 
     def setState(self, awakeState : AwakenState):
         self.awakeState = awakeState
         self.awakeState.process()
-        # print("self.awakeState : ", self.awakeState.stateName)
 
-    def AwakeStateSpeak(self):
+    def awakeStateSpeak(self):
         sentences = self.plant.sentence["awake-state"]
         speakSentence(sentences)
+
+    def goToNextState(self):
+        self.plant.setState(StandbyAfterAwake(self.plant, 10))
+
 
 class StandbyAfterAwake(PlantState):
 

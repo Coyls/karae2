@@ -3,14 +3,28 @@
         "Je n'est pas encore de tutoriel."
     ],
     "thanks": [
-        "A bientôt ! Merci d’avoir pris de mes nouvelles !",
-        "A plus tard ! Merci d’avoir pensé à moi !"
+        "À plus dans le bus !",
+        "À plus !",
+        "À bientôt !",
+        "Tschüss !",
+        "Tchao !",
+        "Bisous !",
+        "C’était sympa de te voir !",
+        "Hasta luego !",
+        "Bye !",
+        "Hasta la vista baby !",
+        "À plus tard !"
     ],
     "awake-state": [
         "Super !"
     ],
     "wake-up-state": [
-        "Salut, tu est venue prendre de mes nouvelles ?"
+        "Hello !",
+        "Ola !",
+        "Hi !",
+        "Salut vieille plante !",
+        "Salut !",
+        "Bonjour !"
     ],
     "return-to-sleep": [
         "Je retourne dormir."
@@ -18,23 +32,34 @@
     "needs": {
         "water": {
             "min": [
-                "Ne me nois pas ! J’ai déjà eu de l’eau récemment",
-                "Attention je ne sais pas encore nager !",
-                "Aïe mes racines ne peuvent pas autant absorber !"
+                "Ne me nois pas ! J’ai déjà été arrosée récemment.",
+                "Aïe, mes racines ne peuvent pas absorber autant !",
+                "Attention, je ne sais pas encore nager !",
+                "Cela fait un peu trop d’eau...",
+                "J’ai une bonne descente certe... mais pas à ce point !"
             ],
             "max": [
-                "Je commence à avoir un peu soif",
-                "J’ai soif, j’aurai besoin que tu m’abreuves !",
-                "Je meurs de soif, peux-tu m’arroser ?",
-                "Donnes-moi un peu d’eau et je te donnerai un peu d’oxygène"
+                "J’ai une petite soif...",
+                "Je commence à avoir un peu soif....",
+                "Un petit verre ne serait pas de refus !",
+                "J’ai un peu soif, peux-tu m’arroser ?",
+                "Une petite baignade me ferait du bien !"
             ]
         },
         "temperature": {
             "min": [
-                "str"
+                "Il fait frisquet ici...",
+                "Je suis frigorifiée, peut-être y a t-il un endroit plus ensoleillé ?",
+                "J’ai un peu froid…",
+                "Il ne fait pas bien chaud ici... ",
+                " Mes feuilles gèlent, je ne vais pas tenir bien longtemps…"
             ],
             "max": [
-                "str"
+                "J’ai un peu chaud... de l’air frais me ferait du bien",
+                " Oulah, il fait chaud ici tu ne trouves pas ?",
+                " Il fait un peu trop chaud pour moi…",
+                "Je commence à avoir chaud.",
+                " Par cette chaleur, je vais finir brûler !"
             ]
         }
     },
@@ -52,19 +77,17 @@
         },
         "temperature": {
             "min": [
-                "str"
+                "Pense à aller prendre le soleil !",
+                "Il fait : … degrés n’hésite pas à augmenter le chauffage ! ",
+                "Merci, j’aime bien faire bronzette ! ",
+                "Tu peux aussi mettre un pull pour être aussi classe que moi !"
             ],
             "max": [
-                "str"
+                "Il fait … degrés, n’hésite pas à aérer !",
+                "Pense à aller t’aérer un petit peu !",
+                "Pense à aller prendre l’air !",
+                "Profite de cette chaleur pour aller te promener !"
             ]
-        }
-    },
-    "general": {
-        "global": [
-            "str"
-        ],
-        "horaire": {
-            "8-12" :""
         }
     }
 }

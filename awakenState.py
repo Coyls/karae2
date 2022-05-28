@@ -81,6 +81,7 @@ class AwakeNeedState(AwakenState):
     def checkNeeds(self):
         percent = self.checkWater()
         self.speakWater(percent)
+        tmp = self.checkTemperature()
 
     def checkWater(self):
         hg = self.awake.plant.storage.store["humidityground"]
@@ -106,6 +107,29 @@ class AwakeNeedState(AwakenState):
         if (percent >= TARGET):
             self.needs.append(["water","max"])
             speakSentence(sentences["max"])
+
+    def checkTemperature(self) -> str:
+        tmp = int(self.awake.plant.storage.store["temperature"])
+        tmpDeltaMin = self.awake.plant.storage.plantCarac["tmpMin"]
+        tmpDeltaMax = self.awake.plant.storage.plantCarac["tmpMax"]
+        if tmp < tmpDeltaMin:
+            return "min"
+        if tmp > tmpDeltaMax:
+            return "max"
+        return "none"
+
+    def speakTemperature(self, tmp : str):
+        sentences = self.awake.plant.sentence["needs"]["temperature"]
+        if tmp == "min":
+            self.needs.append(["temperature","min"])
+            speakSentence(sentences["min"])
+        if tmp == "none":
+            pass
+        if tmp == "max":
+            self.needs.append(["temperature","max"])
+            speakSentence(sentences["max"])
+        
+
   
 class AwakeInfoGeneralState(AwakenState):
 
@@ -133,6 +157,7 @@ class AwakeInfoMirrorState(AwakenState):
 
     def process(self):
         self.speakInfos()
+        # !! Ajouter handleDelay et handleHumidityGround pour savoir si la personne a arroser
         self.awake.setState(AwakeStandbyAfterMirror(self.awake))
 
     def speakInfos(self):
@@ -147,6 +172,7 @@ class AwakeStandbyAfterMirror(AwakenState):
     delay = 7   
 
     def process(self):
+        # !! DESIGNER : Phrase de transition si l'utilisateur souhaite plus d'info !
         Speak.speak("Souhaite tu plus d'info ?")
         # sentences = self.awake.plant.sentence["wake-up-state"]
         # speakSentence(sentences)
@@ -157,11 +183,10 @@ class AwakeStandbyAfterMirror(AwakenState):
         cl.send_message(data.create())
 
     def handleSwitch(self):
-        print("Hello")
         self.awake.setState(AwakeInfoGeneralState(self.awake))
 
     def handleDelay(self):
-        self.awake.setState(AwakeEndState(self.awake))
+        self.awake.setState(AwakeByeState(self.awake))
 
 class AwakeByeState(AwakenState):
 
@@ -180,5 +205,4 @@ class AwakeEndState(AwakenState):
     stateName = "end-state"
     
     def process(self):
-        print("AwakeEndState")
-        Speak.speak("AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHHAHAHAHAHA")
+        self.awake.goToNextState()
