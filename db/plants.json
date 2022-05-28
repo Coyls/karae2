@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Ficus",
+        "deltaWater" : 5000,
+        "tmpMax": 30,
+        "tmpMin": 10
+    },
+    {
+        "name": "Rose",
+        "deltaWater" : 5000,
+        "tmpMax": 22,
+        "tmpMin": 15
+    },
+    {
+        "name": "Orchidée",
+        "deltaWater" : 5000,
+        "tmpMax": 50,
+        "tmpMin": 0
+    }
+]

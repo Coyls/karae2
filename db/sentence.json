@@ -1,0 +1,70 @@
+{
+    "tutorial": [
+        "Je n'est pas encore de tutoriel."
+    ],
+    "thanks": [
+        "A bientôt ! Merci d’avoir pris de mes nouvelles !",
+        "A plus tard ! Merci d’avoir pensé à moi !"
+    ],
+    "awake-state": [
+        "Super !"
+    ],
+    "wake-up-state": [
+        "Salut, tu est venue prendre de mes nouvelles ?"
+    ],
+    "return-to-sleep": [
+        "Je retourne dormir."
+    ],
+    "needs": {
+        "water": {
+            "min": [
+                "Ne me nois pas ! J’ai déjà eu de l’eau récemment",
+                "Attention je ne sais pas encore nager !",
+                "Aïe mes racines ne peuvent pas autant absorber !"
+            ],
+            "max": [
+                "Je commence à avoir un peu soif",
+                "J’ai soif, j’aurai besoin que tu m’abreuves !",
+                "Je meurs de soif, peux-tu m’arroser ?",
+                "Donnes-moi un peu d’eau et je te donnerai un peu d’oxygène"
+            ]
+        },
+        "temperature": {
+            "min": [
+                "str"
+            ],
+            "max": [
+                "str"
+            ]
+        }
+    },
+    "mirror": {
+        "water": {
+            "min": [
+                "Tu gères la fougère, comme moi !"
+            ],
+            "max": [
+                "Merci de m’avoir arrosé. Penses à t’arroser toi aussi.",
+                "Super Merci ! Toi aussi pense à boire un coup !",
+                "Merci d’avoir pensé à moi ! ne t’oublis pas non plus, un petit verre d’eau n’est pas de refus",
+                "Merci ! Une petite baignade un de ces jours pourrait te faire également du bien."
+            ]
+        },
+        "temperature": {
+            "min": [
+                "str"
+            ],
+            "max": [
+                "str"
+            ]
+        }
+    },
+    "general": {
+        "global": [
+            "str"
+        ],
+        "horaire": {
+            "8-12" :""
+        }
+    }
+}

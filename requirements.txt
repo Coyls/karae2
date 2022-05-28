@@ -1,0 +1,9 @@
+bluepy
+dht11
+gpiozero
+gTTS
+playsound
+RPi.GPIO
+simple-websocket-server
+simplejson
+websocket-client
