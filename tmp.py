@@ -21,7 +21,7 @@ class TemperatureSensor:
             print(self.name , " is working !")
             tmp = self.getTemp()
             self.sendTemp(tmp)
-            time.sleep(60)
+            time.sleep(20)
 
     def initName(self):
         data = ProtocolGenerator("name", self.name)

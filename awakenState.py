@@ -64,17 +64,28 @@ class AwakeSetupState(AwakenState):
         Speak.speak(str)
            
 class AwakeNeedState(AwakenState):
+    ## !!!!!!! LE BUG QUI FAIT QUE DES FOIS CA CRASH VIENT PROBABLEMENT DE checkTemperature
+    ## !!! Je pense que tmp n'a pas encore ete recup et c'est pour ca que sa plante
 
     stateName = "need-state"
+    needWaterCheck = ['water', 'max']
 
     needs : list[list[str,str]] = []
     
     def process(self):
+        print("ICICICICICICI ?")
         self.checkNeeds()
+        print("self.needs", self.needs)
         lengthNeeds = len(self.needs)
+        isNeedWater = self.needWaterCheck in self.needs
+        print("isNeedWater", isNeedWater)
         if lengthNeeds > 0:
             # AwakeInfoMirrorState
-            self.awake.setState(AwakeInfoMirrorState(self.awake, self.needs))
+            if isNeedWater:
+                # !!  Trigger un timer --> la personne peut esquiver l'arrosage et est redirigé vers info general
+                print("WAIT FOR WATER")
+            else:
+                self.awake.setState(AwakeInfoMirrorState(self.awake, self.needs))
         else: 
             self.awake.setState(AwakeInfoGeneralState(self.awake))
     
@@ -82,6 +93,8 @@ class AwakeNeedState(AwakenState):
         percent = self.checkWater()
         self.speakWater(percent)
         tmp = self.checkTemperature()
+        print("tmp :", tmp)
+        self.speakTemperature(tmp)
 
     def checkWater(self):
         hg = self.awake.plant.storage.store["humidityground"]
@@ -110,8 +123,11 @@ class AwakeNeedState(AwakenState):
 
     def checkTemperature(self) -> str:
         tmp = int(self.awake.plant.storage.store["temperature"])
+        print("tmp", tmp)
         tmpDeltaMin = self.awake.plant.storage.plantCarac["tmpMin"]
+        print("tmpDeltaMin", tmpDeltaMin)
         tmpDeltaMax = self.awake.plant.storage.plantCarac["tmpMax"]
+        print("tmpDeltaMax", tmpDeltaMax)
         if tmp < tmpDeltaMin:
             return "min"
         if tmp > tmpDeltaMax:
@@ -128,8 +144,6 @@ class AwakeNeedState(AwakenState):
         if tmp == "max":
             self.needs.append(["temperature","max"])
             speakSentence(sentences["max"])
-        
-
   
 class AwakeInfoGeneralState(AwakenState):
 
