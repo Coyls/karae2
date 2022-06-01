@@ -29,6 +29,9 @@ class Plant:
     def handleSwitch(self):
         self.state.handleSwitch()
 
+    def handleHumidityGround(self):
+        self.state.handleHumidityGround()
+
     def handleProximity(self):
         self.state.handleProximity()
 
@@ -74,6 +77,7 @@ class Plant:
             print(key ,":", val)
             self.storage.saveOnFile(key[1:], str(datetime.datetime.now()))
             self.storage.saveOnStore(key[1:], str(datetime.datetime.now()))
+            self.handleHumidityGround()
         
         if key == "/temperature":
             print(key ,":", val)

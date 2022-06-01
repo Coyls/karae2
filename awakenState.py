@@ -25,6 +25,9 @@ class AwakenState:
     def handleSwitch(self):
         pass
 
+    def handleHumidityGround(self):
+        pass
+
 class AwakeHelloState(AwakenState):
 
     stateName = "hello-state"
@@ -69,11 +72,11 @@ class AwakeNeedState(AwakenState):
 
     stateName = "need-state"
     needWaterCheck = ['water', 'max']
+    delayNeedWater = 20
 
     needs : list[list[str,str]] = []
     
     def process(self):
-        print("ICICICICICICI ?")
         self.checkNeeds()
         print("self.needs", self.needs)
         lengthNeeds = len(self.needs)
@@ -82,13 +85,20 @@ class AwakeNeedState(AwakenState):
         if lengthNeeds > 0:
             # AwakeInfoMirrorState
             if isNeedWater:
-                # !!  Trigger un timer --> la personne peut esquiver l'arrosage et est redirigé vers info general
                 print("WAIT FOR WATER")
+                self.delayWater()
             else:
                 self.awake.setState(AwakeInfoMirrorState(self.awake, self.needs))
         else: 
             self.awake.setState(AwakeInfoGeneralState(self.awake))
-    
+
+    def handleDelay(self):
+        self.awake.setState(AwakeInfoGeneralState(self.awake))
+
+    def handleHumidityGround(self):
+        print("water !!!!!!")
+        self.awake.setState(AwakeInfoMirrorState(self.awake, self.needs))
+        
     def checkNeeds(self):
         percent = self.checkWater()
         self.speakWater(percent)
@@ -144,6 +154,13 @@ class AwakeNeedState(AwakenState):
         if tmp == "max":
             self.needs.append(["temperature","max"])
             speakSentence(sentences["max"])
+
+    def delayWater(self):
+        cls = self.awake.plant.connectionManager.clients
+        res = dict((v,k) for k,v in cls.items())
+        cl = res["eureka"]
+        data = ProtocolGenerator(self.stateName,str(self.delayNeedWater))
+        cl.send_message(data.create())
   
 class AwakeInfoGeneralState(AwakenState):
 

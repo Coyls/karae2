@@ -25,6 +25,9 @@ class PlantState:
     def handleProximity(self):
         pass
 
+    def handleHumidityGround(self):
+        pass
+
     def handleDelay(self,  acces : str):
         pass
 
@@ -191,7 +194,11 @@ class AwakeState(PlantState):
 
     def handleDelay(self,  acces : str):
         if (acces == self.awakeState.stateName):
+            print("self.awakeState.stateName",  self.awakeState.stateName)
             self.awakeState.handleDelay()
+
+    def handleHumidityGround(self):
+        self.awakeState.handleHumidityGround()
 
     def handleButtons(self, type : BtnType):
         pass
